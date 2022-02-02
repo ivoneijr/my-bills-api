@@ -1,0 +1,12 @@
+export { AggregateIncomeOriginArgs } from "./AggregateIncomeOriginArgs";
+export { CreateIncomeOriginArgs } from "./CreateIncomeOriginArgs";
+export { CreateManyIncomeOriginArgs } from "./CreateManyIncomeOriginArgs";
+export { DeleteIncomeOriginArgs } from "./DeleteIncomeOriginArgs";
+export { DeleteManyIncomeOriginArgs } from "./DeleteManyIncomeOriginArgs";
+export { FindFirstIncomeOriginArgs } from "./FindFirstIncomeOriginArgs";
+export { FindManyIncomeOriginArgs } from "./FindManyIncomeOriginArgs";
+export { FindUniqueIncomeOriginArgs } from "./FindUniqueIncomeOriginArgs";
+export { GroupByIncomeOriginArgs } from "./GroupByIncomeOriginArgs";
+export { UpdateIncomeOriginArgs } from "./UpdateIncomeOriginArgs";
+export { UpdateManyIncomeOriginArgs } from "./UpdateManyIncomeOriginArgs";
+export { UpsertIncomeOriginArgs } from "./UpsertIncomeOriginArgs";
