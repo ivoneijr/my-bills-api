@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "./generated/type-graphql"
+}
+
+model IncomeOrigin {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  incomes     Income[]
+}
+
+model Income {
+  id             String        @id @default(cuid())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @default(now()) @updatedAt
+  IncomeOrigin   IncomeOrigin? @relation(fields: [incomeOriginId], references: [id])
+  incomeOriginId String?
+  Occurrence     Occurrence?   @relation(fields: [occurrenceId], references: [id])
+  occurrenceId   String?
+}
+
+enum ExpenseCategory {
+  CREDIT_CARD
+  FIXED
+  VARIABLE
+  SEASONAL
+  INVESTMENT
+  HEALTH
+  EDUCATION
+  ENTERTAINMENT
+  FOOD
+  RENTING
+  CAR
+  FAMILY
+  OTHER
+}
+
+model Expense {
+  id           String          @id @default(cuid())
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @default(now()) @updatedAt
+  name         String
+  description  String
+  amount       Float
+  category     ExpenseCategory
+  paidAt       DateTime
+  Occurrence   Occurrence?     @relation(fields: [occurrenceId], references: [id])
+  occurrenceId String?
+}
+
+model Occurrence {
+  id          String    @id @default(cuid())
+  description String
+  startsAt    DateTime
+  endsAt      DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  expenses    Expense[]
+  incomes     Income[]
+}
