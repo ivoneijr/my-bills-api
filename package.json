@@ -25,10 +25,13 @@
     "typegraphql-prisma": "^0.18.4"
   },
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --no-notify index.ts",
-    "predev": "yarn run prisma:migrate",
-    "prisma:migrate": "yarn prisma migrate dev",
-    "prisma:generate": "npx prisma generate",
+    "dev": "ts-node-dev --respawn --transpile-only --no-notify ./src/index.ts",
+    "predev": "yarn run prisma:migrate --schema ./src/prisma/schema.prisma",
+    "prisma:migrate": "yarn prisma migrate dev --schema ./src/prisma/schema.prisma",
+    "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
     "prisma:studio": "yarn prisma studio"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   }
 }
